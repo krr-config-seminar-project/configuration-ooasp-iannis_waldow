@@ -26,10 +26,6 @@ ooasp_instantiation(M, I) :- ooasp_isa(I, C, O), ooasp_class(M, C).
 { ooasp_isa(I, C, (C,O)) } :-
 	ooasp_instantiation(M, I), ooasp_class(M, C), not ooasp_subclass(M, _, C), possible_instance_id(O).
 
-%
-% Your encoding goes here...
-%
-
 % Infer superclass properties from subclasses
 ooasp_isalso(I,C,O) :- ooasp_isa(I,C,O).
 ooasp_isalso(I,SC,O) :- ooasp_isa(I,C,O), ooasp_subclass(M,C,SC).
@@ -95,3 +91,4 @@ ooasp_assoc_count(I,A,O1,N) :-
 
 % DEBUG
 %#show ooasp_assoc_count/4.
+%#show ooasp_isalso/3.
