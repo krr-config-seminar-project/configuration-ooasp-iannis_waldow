@@ -3,25 +3,14 @@
 % domain specific constraints below
 
 % Two modules in the same frame cannot have the same position.
-:- ooasp_isa(_,"ModuleA",O1), ooasp_isa(_,"ModuleA",O2), O1 != O2, 
-	ooasp_associated(I,"Frame_modules",Frame,O1), ooasp_associated(I,"Frame_modules",Frame,O2),
-	ooasp_attribute_value(I,"position",O1,Pos1), ooasp_attribute_value(I,"position",O2,Pos2),
-	Pos1 = Pos2.
-:- ooasp_isa(_,"ModuleA",O1), ooasp_isa(_,"ModuleB",O2), O1 != O2, 
-	ooasp_associated(I,"Frame_modules",Frame,O1), ooasp_associated(I,"Frame_modules",Frame,O2),
-	ooasp_attribute_value(I,"position",O1,Pos1), ooasp_attribute_value(I,"position",O2,Pos2),
-	Pos1 = Pos2.
-:- ooasp_isa(_,"ModuleB",O1), ooasp_isa(_,"ModuleA",O2), O1 != O2, 
-	ooasp_associated(I,"Frame_modules",Frame,O1), ooasp_associated(I,"Frame_modules",Frame,O2),
-	ooasp_attribute_value(I,"position",O1,Pos1), ooasp_attribute_value(I,"position",O2,Pos2),
-	Pos1 = Pos2.
-:- ooasp_isa(_,"ModuleB",O1), ooasp_isa(_,"ModuleB",O2), O1 != O2, 
+:- ooasp_isalso(_,"Module",O1), ooasp_isalso(_,"Module",O2), O1 != O2, 
 	ooasp_associated(I,"Frame_modules",Frame,O1), ooasp_associated(I,"Frame_modules",Frame,O2),
 	ooasp_attribute_value(I,"position",O1,Pos1), ooasp_attribute_value(I,"position",O2,Pos2),
 	Pos1 = Pos2.
 
+
 % Two modules of type ModuleA may not be adjacent to each other.
-:- ooasp_isa(I,"ModuleA",O1), ooasp_isa(I,"ModuleA",O2), O1 != O2,
+:- ooasp_isalso(I,"ModuleA",O1), ooasp_isalso(I,"ModuleA",O2), O1 != O2,
 	ooasp_attribute_value(I,"position",O1,Pos1), ooasp_attribute_value(I,"position",O2,Pos2),
 	|(Pos1-Pos2)| = 1.
 
