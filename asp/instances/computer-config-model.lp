@@ -5,6 +5,7 @@ ooasp_class("PCv1","Case").
 ooasp_class("PCv1","Motherboard"). 
 ooasp_class("PCv1","CPU").
 ooasp_class("PCv1","GPU"). 
+ooasp_class("PCv1","RAM"). 
 
 
 % class inheritance
@@ -18,7 +19,7 @@ ooasp_subclass("PCv1","GPU","ComputerPart").
 % associations
 ooasp_assoc("PCv1","Case_Motherboard","Case",1,1,"Motherboard",1,1).
 ooasp_assoc("PCv1","Motherboard_CPU","Motherboard",1,1,"CPU",1,1).
-ooasp_assoc("PCv1","Motherboard_RAM","Motherboard",1,1,"RAM",1,4).
+ooasp_assoc("PCv1","Motherboard_RAM","Motherboard",1,1,"RAM",1,1).
 ooasp_assoc("PCv1","Motherboard_GPU","Motherboard",1,1,"GPU",1,1).
 
 
@@ -49,11 +50,6 @@ ooasp_attribute("PCv1", "Motherboard", "ram_type", "string").
 ooasp_attribute_enum("PCv1", "Motherboard", "ram_type", "DDR3").
 ooasp_attribute_enum("PCv1", "Motherboard", "ram_type", "DDR4").
 ooasp_attribute_enum("PCv1", "Motherboard", "ram_type", "DDR5").
-
-%% Mobo RAM slots
-ooasp_attribute("PCv1", "Motherboard", "ram_slots", "integer").
-ooasp_attribute_minInclusive("PCv1","ram_slots","position",1).
-ooasp_attribute_maxInclusive("PCv1","ram_slots","position",4).
 
 %% Mobo PCIe type
 ooasp_attribute("PCv1", "Motherboard", "pcie_type", "string").
@@ -106,7 +102,6 @@ ooasp_subclass("PCv1", "ASUS_Z690", "Motherboard").
 ooasp_attribute_value(I, "form_factor", O, "ATX") :- ooasp_isa(I, "ASUS_Z690", O).
 ooasp_attribute_value(I, "socket", O, "LGA 1700") :- ooasp_isa(I, "ASUS_Z690", O).
 ooasp_attribute_value(I, "ram_type", O, "DDR5") :- ooasp_isa(I, "ASUS_Z690", O).
-ooasp_attribute_value(I, "ram_slots", O, 4) :- ooasp_isa(I, "ASUS_Z690", O).
 ooasp_attribute_value(I, "pcie_type", O, "5.0") :- ooasp_isa(I, "ASUS_Z690", O).
 
 ooasp_class("PCv1", "MSI_B550M").
@@ -114,7 +109,6 @@ ooasp_subclass("PCv1", "MSI_B550M", "Motherboard").
 ooasp_attribute_value(I, "form_factor", O, "Micro-ATX") :- ooasp_isa(I, "MSI_B550M", O).
 ooasp_attribute_value(I, "socket", O, "AM4") :- ooasp_isa(I, "MSI_B550M", O).
 ooasp_attribute_value(I, "ram_type", O, "DDR4") :- ooasp_isa(I, "MSI_B550M", O).
-ooasp_attribute_value(I, "ram_slots", O, 4) :- ooasp_isa(I, "MSI_B550M", O).
 ooasp_attribute_value(I, "pcie_type", O, "4.0") :- ooasp_isa(I, "MSI_B550M", O).
 
 % Case subclasses
