@@ -3,12 +3,27 @@
 % domain specific constraints below
 
 % Two modules in the same frame cannot have the same position.
-%
-% Your domain-specific constraint goes here...
+:- ooasp_isa(_,"ModuleA",O1), ooasp_isa(_,"ModuleA",O2), O1 != O2, 
+	ooasp_associated(I,"Frame_modules",Frame,O1), ooasp_associated(I,"Frame_modules",Frame,O2),
+	ooasp_attribute_value(I,"position",O1,Pos1), ooasp_attribute_value(I,"position",O2,Pos2),
+	Pos1 = Pos2.
+:- ooasp_isa(_,"ModuleA",O1), ooasp_isa(_,"ModuleB",O2), O1 != O2, 
+	ooasp_associated(I,"Frame_modules",Frame,O1), ooasp_associated(I,"Frame_modules",Frame,O2),
+	ooasp_attribute_value(I,"position",O1,Pos1), ooasp_attribute_value(I,"position",O2,Pos2),
+	Pos1 = Pos2.
+:- ooasp_isa(_,"ModuleB",O1), ooasp_isa(_,"ModuleA",O2), O1 != O2, 
+	ooasp_associated(I,"Frame_modules",Frame,O1), ooasp_associated(I,"Frame_modules",Frame,O2),
+	ooasp_attribute_value(I,"position",O1,Pos1), ooasp_attribute_value(I,"position",O2,Pos2),
+	Pos1 = Pos2.
+:- ooasp_isa(_,"ModuleB",O1), ooasp_isa(_,"ModuleB",O2), O1 != O2, 
+	ooasp_associated(I,"Frame_modules",Frame,O1), ooasp_associated(I,"Frame_modules",Frame,O2),
+	ooasp_attribute_value(I,"position",O1,Pos1), ooasp_attribute_value(I,"position",O2,Pos2),
+	Pos1 = Pos2.
 
 % Two modules of type ModuleA may not be adjacent to each other.
-%
-% Your domain-specific constraint goes here...
+:- ooasp_isa(I,"ModuleA",O1), ooasp_isa(I,"ModuleA",O2), O1 != O2,
+	ooasp_attribute_value(I,"position",O1,Pos1), ooasp_attribute_value(I,"position",O2,Pos2),
+	|(Pos1-Pos2)| = 1.
 
 % symmetry breaking for positions. For each frame, and each module
 % type, the mapping from modules of the same type to their positions
