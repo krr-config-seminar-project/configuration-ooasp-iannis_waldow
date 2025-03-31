@@ -83,6 +83,8 @@ ooasp_attribute_enum("PCv1", "GPU", "pcie_type", "5.0").
 %%%%%%%%%%%%%%%%%%%%
 %%% Sample Parts %%%
 %%%%%%%%%%%%%%%%%%%%
+% We define subclasses for different computer parts. If the part is in the config, we "initialize" its attribute values
+
 % CPU subclasses
 ooasp_class("PCv1", "Intel_i9_14900K").
 ooasp_subclass("PCv1", "Intel_i9_14900K", "CPU").
